@@ -1,0 +1,38 @@
+from tkinter import *
+import random
+screen = Tk()
+screen.config(bg='white')
+screen.title('rock paper scissors')
+screen.geometry('1050x500')
+select=''
+score=0
+cselect=''
+cscore=0
+winner=''
+def rps(player_option):
+    global winner,cscore,score
+    options=['rock','paper','scissors']
+    cselect=random.choice(options)
+    if (cselect=='rock' and player_option=='scissors') or (cselect=='scissors' and player_option=='paper') or (cselect=='paper' and player_option=='rock'):
+        cscore+=1
+        winner ='computer'
+    elif cselect==player_option:
+        winner = 'Draw'
+    else:
+        score+=1
+        winner='player'
+title = Label(screen,text='ROCK PAPER SCISSORS!',fg='blue',bg='white',font=('arail',50))
+title.grid(row=1,column=1)
+option= Label(screen,text='Your Options: ',fg='black',bg='white',font=(('arial',20)))
+option.grid(row=2,column=0,padx=25,pady=50)
+rock=Button(screen,text='Rock',bg='red',fg='black',width=15,command=lambda:rps('rock'))
+rock.grid(row=3,column=0)
+paper=Button(screen,text='Paper',fg='black',bg='grey',width=15,command=lambda:rps('paper'))
+paper.grid(row=3,column=1)
+scissors=Button(screen,text='Scissors',fg='black',bg='blue',width=15,command=lambda:rps('scissors'))
+scissors.grid(row=3,column=2)
+scor= Label(screen,text='Score: ',fg='black',bg='white',font=(('arial',20)))
+scor.grid(row=4,column=0,padx=25,pady=20)
+selected=Label(screen,text='Your selected: '+select,bg='white',fg='black',font=('arial',15))
+
+screen.mainloop()
